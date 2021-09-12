@@ -37,7 +37,8 @@ gem 'devise'
 
 # generador de pdf
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-heroku", group: :production
 
 group :development, :test do
   gem 'pry-byebug'

@@ -11,10 +11,10 @@ class EventsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "Culto #{@event.name}",
-        page_size: 'A4',
+        page_size: 'Letter',
         template: "events/show.html.erb",
         layout: "pdf.html",
-        orientation: "Landscape",
+        orientation: "Portrait",
         lowquality: true,
         zoom: 1,
         dpi: 75
