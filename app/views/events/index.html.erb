@@ -1,11 +1,15 @@
 <h2 class="text-center mt-2">Selecciona el culto que deseas asistir</h2>
-<% @events.each do |event| %>
-<div class="d-flex flex-column align-items-center">
-  <% if event.quantity > 0 %>
-    <%= link_to new_event_attendant_path(event) do %>
-      <%= event.name %>
-      <p><%= event.quantity %> cupos disponibles</p>
+<% if @events.size > 0 %>
+  <% @events.each do |event| %>
+  <div class="d-flex flex-column align-items-center">
+    <% if event.quantity > 0 %>
+      <%= link_to new_event_attendant_path(event) do %>
+        <%= event.name %>
+        <p><%= event.quantity %> cupos disponibles</p>
+      <% end %>
     <% end %>
+  </div>
   <% end %>
-</div>
+<% else %>
+<p>No hay cultos disponibles</p>
 <% end %>
