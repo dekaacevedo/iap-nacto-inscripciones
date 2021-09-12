@@ -40,6 +40,9 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
 gem "wkhtmltopdf-heroku", group: :production
 
+# gem aws s3
+gem "aws-sdk-s3", require: false
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
