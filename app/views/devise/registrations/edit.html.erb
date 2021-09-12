@@ -13,14 +13,14 @@
     <% end %>
 
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                hint: "deja esto en blanco si no quieres una nueva contraseña.",
                 required: false,
                 input_html: { autocomplete: "new-password" }, label: "Nueva contraseña" %>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" }, label: "Confirma tu nueva contraseña" %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: "es necesaria tu contraseña actual para confirmar tus cambios.",
                 required: true,
                 input_html: { autocomplete: "current-password" }, label: "Contraseña actual" %>
     <%= f.input :first_name,
@@ -34,15 +34,17 @@
       <%= f.input :rut,
                   required: true,
                   input_html: { autocomplete: "rut" },
-                  label: "RUT" %>
+                  label: "RUT",
+                  hint: "debes escribir el rut sin puntos y con guión. Ej: 12345678-9" %>
       <%= f.input :phone,
                   required: true,
                   input_html: { autocomplete: "phone" },
                   label: "Teléfono" %>
   </div>
+  <p>* Es un campo requerido</p>
 
   <div class="form-actions d-flex justify-content-center">
-    <%= f.button :submit, "Update", class: "btn btn-primary" %>
+    <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
   </div>
 <% end %>
   <div class="d-flex flex-column align-items-center mt-3 mb-5">

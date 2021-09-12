@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'events#index'
 
+  get 'admin', to: 'events#admin', as: 'admin'
   resources :events do
     resources :attendants, only: %i[new create]
   end

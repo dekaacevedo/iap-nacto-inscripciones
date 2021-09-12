@@ -35,6 +35,10 @@ gem 'simple_form'
 # instalar devise
 gem 'devise'
 
+# generador de pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

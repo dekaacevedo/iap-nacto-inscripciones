@@ -7,6 +7,19 @@ class EventsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Culto #{@event.name}",
+        page_size: 'A4',
+        template: "events/show.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
   end
 
   def new
@@ -41,6 +54,10 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     redirect_to root_path
+  end
+
+  def admin
+    @events = Event.all
   end
   private
 

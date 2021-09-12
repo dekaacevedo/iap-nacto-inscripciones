@@ -1,0 +1,4 @@
+<div class="container">
+  <h1 class="text-center mt-3"><%= @event.name %></h1>
+  <p class="text-center"><%=pluralize @event.attendants.count, "asistente" %></p>
+</div>

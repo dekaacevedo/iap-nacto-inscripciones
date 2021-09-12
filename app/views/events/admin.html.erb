@@ -1,0 +1,9 @@
+<h2 class="text-center mt-2">Revisa los asistentes por culto</h2>
+<% @events.each do |event| %>
+<div class="d-flex flex-column align-items-center">
+    <%= link_to event_path(event) do %>
+      <%= event.name %>
+      <p><%= event.quantity %> cupos disponibles</p>
+    <% end %>
+</div>
+<% end %>

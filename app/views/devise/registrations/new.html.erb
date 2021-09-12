@@ -12,7 +12,7 @@
                   label: "Correo eléctronico"%>
       <%= f.input :password,
                   required: true,
-                  hint: ("Mínimo #{@minimum_password_length} caracteres" if @minimum_password_length),
+                  hint: ("mínimo #{@minimum_password_length} caracteres" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" },
                   label: "Contraseña" %>
       <%= f.input :password_confirmation,
@@ -30,13 +30,15 @@
       <%= f.input :rut,
                   required: true,
                   input_html: { autocomplete: "rut" },
-                  label: "RUT" %>
+                  label: "RUT",
+                  hint: "debes escribir el rut sin puntos y con guión. Ej: 12345678-9" %>
       <%= f.input :phone,
                   required: true,
                   input_html: { autocomplete: "phone" },
                   label: "Teléfono" %>
 
     </div>
+    <p>* Es un campo requerido</p>
 
     <div class="form-actions d-flex justify-content-center">
       <%= f.button :submit, "Regístrate", class: "btn btn-primary" %>
