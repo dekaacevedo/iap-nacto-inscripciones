@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 body {
   font-family: "Nunito", "sans-serif";
+}
+
+.bold {
+  font-weight: 700;
 }

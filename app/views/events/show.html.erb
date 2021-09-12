@@ -1,4 +1,28 @@
 <div class="container">
   <h1 class="text-center mt-3 "><%= @event.name %></h1>
   <p class="text-center"><%=pluralize @event.attendants.count, "asistente" %></p>
+  <table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="bold">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Rut</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Correo electrónico</th>
+      <th scope="col">Inscrito el</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendants.each do |attendant| %>
+      <tr>
+        <td><%= attendant.first_name %></td>
+        <td><%= attendant.last_name %></td>
+        <td><%= attendant.rut %></td>
+        <td><%= attendant.phone %></td>
+        <td><%= attendant.email %></td>
+        <th scope="row"><%= attendant.created_at.strftime('%d/%m/%Y') %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>

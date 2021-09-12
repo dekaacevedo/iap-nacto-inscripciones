@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @attendants = @event.attendants
     respond_to do |format|
       format.html
       format.pdf do
