@@ -1,0 +1,17 @@
+<div class="container">
+  <h2 class="text-center mt-2">Nuevo evento</h2>
+
+  <div class="container d-flex flex-column align-items-center">
+    <%= simple_form_for @event do |f| %>
+      <div class=" form-inputs">
+        <%= f.input :name, label: "Nombre del evento" %>
+        <%= f.input :date, as: :date, order: [:day, :month, :year], label: "Fecha" %>
+        <%= f.input :quantity, label: "Cantidad de asistentes"%>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="text-center">
+        <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

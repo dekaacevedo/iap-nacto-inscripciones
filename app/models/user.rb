@@ -3,4 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :rut, presence: true, format: {with: /\b[0-9|]{7,10}\-[K|k|0-9]/}
+
 end

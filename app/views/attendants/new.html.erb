@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 class="text-center mt-2">Nuevo asistente</h2>
+
+  <div class="container d-flex flex-column align-items-center">
+    <%= simple_form_for [@event, @attendant] do |f| %>
+      <div class=" form-inputs">
+        <%= f.input :first_name, label: "Nombre" %>
+        <%= f.input :last_name, label: "Apellidos" %>
+        <%= f.input :rut, label: "Rut", hint: "Debe escribir el rut sin puntos y con guión ej: 12345678-9"%>
+        <%= f.input :phone, label: "Teléfono"%>
+        <%= f.input :email, label: "Correo eléctronico"%>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="text-center mb-5">
+        <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
