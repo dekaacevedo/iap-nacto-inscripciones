@@ -21,7 +21,9 @@
             <td><%= attendant.first_name %></td>
             <td><%= attendant.last_name %></td>
             <td><%= attendant.rut %></td>
-            <td><%= attendant.phone %></td>
+            <td>
+            <%= link_to attendant.phone, "https://wa.me/56#{attendant.phone}?text=Hola,%20el%20link%20para%20que%20completes%20tu%20Declaración%20Jurada%20es%20este:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", target: "_blank"%>
+            </td>
             <td><%= attendant.email %></td>
             <td scope="row"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
             <% if attendant.declaration.present? %>
