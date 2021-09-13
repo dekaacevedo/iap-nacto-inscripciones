@@ -1,0 +1,131 @@
+<div class="container">
+  <h3 class="text-center mt-3">Declaración de <%= @declaration.attendant.first_name + " " + @declaration.attendant.last_name%></h1>
+  <p class="text-center"><%= @declaration.event.name %></p>
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>1. ¿Se ha realizado un examen de PCR para detectar COVID-19 en la última semana?</p>
+    <% if @declaration.qa == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>2. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona con diagnóstico conocido de COVID-19 en los últimos 11 días? (Excluye personal de salud con uso de EPP en contexto de atención de paciente/excluye ser contacto de un contacto)</p>
+    <% if @declaration.qb == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>3. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona sospechosa de COVID-19 en espera de resultado del examen de COVID-19 en la última semana? (Excluye personal de salud con uso de EPP en contexto de atención de paciente)</p>
+    <% if @declaration.qc == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>4. ¿Ha presentado alguno de los siguientes síntomas agudos asociados a COVID-19 en la última semana? Puede marcar más de uno:</p>
+    <p>Temperatura de 37,5°C o más</p>
+    <% if @declaration.qd1 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Pérdida brusca del olfato (anosmia)</p>
+    <% if @declaration.qd2 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Pérdida brusca del gusto (ageusia)</p>
+    <% if @declaration.qd3 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>5. Marque si actualmente presenta alguno de los siguientes síntomas agudos asociados a COVID-19, puede marcar más de uno:</p>
+    <p>Tos</p>
+    <% if @declaration.qe1 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Calofríos</p>
+    <% if @declaration.qe2 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Dolor de cabeza</p>
+    <% if @declaration.qe3 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Dolor de garganta al comer o tragar</p>
+    <% if @declaration.qe4 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Dolores musculares</p>
+    <% if @declaration.qe5 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Diarrea o dolor abdominal</p>
+    <% if @declaration.qe6 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Dolor en el pecho</p>
+    <% if @declaration.qe7 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <p>Pérdida brusca del gusto (ageusia)</p>
+    <% if @declaration.qe8 == true %>
+      <p>SI</p>
+    <% else %>
+      <p>NO</p>
+    <% end %>
+  </div>
+</div>

@@ -10,6 +10,8 @@
       <th scope="col">Teléfono</th>
       <th scope="col">Correo electrónico</th>
       <th scope="col">Inscrito el</th>
+      <th scope="col">Declaración</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,7 +22,17 @@
         <td><%= attendant.rut %></td>
         <td><%= attendant.phone %></td>
         <td><%= attendant.email %></td>
-        <th scope="row"><%= attendant.created_at.strftime('%d/%m/%Y') %></th>
+        <td scope="row"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
+        <% if attendant.declaration.present? %>
+          <td><%= link_to 'Ver declaración', event_declaration_path(attendant.declaration) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td>
+        <%= link_to attendant_path(attendant), method: :delete, data: { confirm: "Estás seguro?" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+            </td>
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_203439) do
+ActiveRecord::Schema.define(version: 2021_09_12_222649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,30 @@ ActiveRecord::Schema.define(version: 2021_09_12_203439) do
     t.index ["event_id"], name: "index_attendants_on_event_id"
   end
 
+  create_table "declarations", force: :cascade do |t|
+    t.string "rut"
+    t.boolean "qa"
+    t.boolean "qb"
+    t.boolean "qc"
+    t.boolean "qd1"
+    t.boolean "qd2"
+    t.boolean "qd3"
+    t.boolean "qe1"
+    t.boolean "qe2"
+    t.boolean "qe3"
+    t.boolean "qe4"
+    t.boolean "qe5"
+    t.boolean "qe6"
+    t.boolean "qe7"
+    t.boolean "qe8"
+    t.bigint "attendant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "event_id", null: false
+    t.index ["attendant_id"], name: "index_declarations_on_attendant_id"
+    t.index ["event_id"], name: "index_declarations_on_event_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.date "date"
@@ -77,5 +101,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_203439) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attendants", "events"
+  add_foreign_key "declarations", "attendants"
+  add_foreign_key "declarations", "events"
   add_foreign_key "events", "users"
 end

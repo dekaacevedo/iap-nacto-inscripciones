@@ -1,5 +1,6 @@
 class Attendant < ApplicationRecord
   belongs_to :event
+  has_one :declaration, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

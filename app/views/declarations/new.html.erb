@@ -1,0 +1,46 @@
+<div class="container">
+  <h2 class="text-center mt-2">Declaración</h2>
+
+  <div class="d-flex flex-column align-items-center">
+    <%= simple_form_for [@event, @declaration] do |f| %>
+      <div class=" form-inputs">
+        <%= f.input :rut, label: "Rut", hint: "debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
+        <%= f.input :qa, as: :radio_buttons, label: "1. ¿Se ha realizado un examen de PCR para detectar COVID-19 en la última semana?" %>
+
+        <%= f.input :qb, as: :radio_buttons, label: "2. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona con diagnóstico conocido de COVID-19 en los últimos 11 días? (Excluye personal de salud con uso de EPP en contexto de atención de paciente/excluye ser contacto de un contacto)" %>
+
+        <%= f.input :qc, as: :radio_buttons, label: "3. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona sospechosa de COVID-19 en espera de resultado del examen de COVID-19 en la última semana? (Excluye personal de salud con uso de EPP en contexto de atención de paciente)" %>
+
+        <p>4. ¿Ha presentado alguno de los siguientes síntomas agudos asociados a COVID-19 en la última semana? Puede marcar más de uno:</p>
+        <%= f.input :qd1, as: :radio_buttons, label: "Temperatura de 37,5°C o más" %>
+
+        <%= f.input :qd2, as: :radio_buttons, label: "Pérdida brusca del olfato (anosmia)" %>
+
+        <%= f.input :qd3, as: :radio_buttons, label: "Pérdida brusca del gusto (ageusia)" %>
+
+        <p>5. Marque si actualmente presenta alguno de los siguientes síntomas agudos asociados a COVID-19, puede marcar más de uno:</p>
+        <%= f.input :qe1, as: :radio_buttons, label: "Tos" %>
+
+        <%= f.input :qe2, as: :radio_buttons, label: "Calofríos" %>
+
+        <%= f.input :qe3, as: :radio_buttons, label: "Dolor de cabeza" %>
+
+        <%= f.input :qe4, as: :radio_buttons, label: "Dolor de garganta al comer o tragar" %>
+
+        <%= f.input :qe5, as: :radio_buttons, label: "Dolores musculares" %>
+
+        <%= f.input :qe6, as: :radio_buttons, label: "Diarrea o dolor abdominal" %>
+
+        <%= f.input :qe7, as: :radio_buttons, label: "Dolor en el pecho" %>
+
+        <%= f.input :qe8, as: :radio_buttons, label: "Dificultad para respirar" %>
+
+      </div>
+      <p>* Es un campo requerido</p>
+      <div class="dropdown-divider"></div>
+      <div class="text-center mb-5">
+        <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
