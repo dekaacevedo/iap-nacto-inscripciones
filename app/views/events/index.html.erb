@@ -1,15 +1,21 @@
-<h2 class="text-center mt-2">Selecciona el culto que deseas asistir</h2>
-<% if @events.size > 0 %>
-  <% @events.each do |event| %>
+<div class="container">
+  <h3 class="text-center mt-3">Selecciona el culto que deseas asistir</h2>
   <div class="d-flex flex-column align-items-center">
-    <% if event.quantity > 0 %>
-      <%= link_to new_event_attendant_path(event) do %>
-        <%= event.name %>
-        <p><%= event.quantity %> cupos disponibles</p>
+    <% if @events.size > 0 %>
+      <% @events.order(date: :asc).each do |event| %>
+        <% if event.quantity > 0 %>
+          <% if event.date > Date.today %>
+            <%= link_to new_event_attendant_path(event) do %>
+              <div class="d-flex flex-column align-items-center justify-content-center my-3 btn btn-primary">
+                <p><%= event.name %></p>
+                <p><%= event.quantity %> cupos disponibles</p>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
+    <% else %>
+    <p class="text-center">No hay cultos disponibles</p>
     <% end %>
   </div>
-  <% end %>
-<% else %>
-<p class="text-center">No hay cultos disponibles</p>
-<% end %>
+</div>

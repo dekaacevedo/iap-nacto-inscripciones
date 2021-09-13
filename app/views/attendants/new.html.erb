@@ -1,16 +1,16 @@
 <div class="container">
-  <h2 class="text-center mt-2">Nuevo asistente</h2>
+  <h3 class="text-center mt-3">Escribe tus datos</h2>
 
-  <div class="d-flex flex-column align-items-center">
+  <div class="d-flex flex-column align-items-center mt-2">
     <%= simple_form_for [@event, @attendant] do |f| %>
       <div class=" form-inputs">
         <%= f.input :first_name, label: "Nombre" %>
         <%= f.input :last_name, label: "Apellidos" %>
-        <%= f.input :rut, label: "Rut", hint: "debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
+        <%= f.input :rut, label: "Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
         <%= f.input :phone, label: "Teléfono"%>
         <%= f.input :email, label: "Correo eléctronico"%>
       </div>
-      <p>* Es un campo requerido</p>
+      <p>* Es necesario que lo completes</p>
       <div class="dropdown-divider"></div>
       <div class="text-center mb-5">
         <%= f.button :submit, "Guardar", class: "btn btn-primary" %>

@@ -1,9 +1,13 @@
-<h2 class="text-center mt-2">Revisa los asistentes por culto</h2>
-<% @events.each do |event| %>
-<div class="d-flex flex-column align-items-center">
-    <%= link_to event_path(event) do %>
-      <%= event.name %>
-      <p><%= event.quantity %> cupos disponibles</p>
+<div class="container">
+  <h3 class="text-center mt-3">Asistentes por culto</h3>
+  <div class="d-flex flex-column align-items-center">
+    <% @events.each do |event| %>
+          <%= link_to event_path(event) do %>
+            <div class="d-flex flex-column align-items-center btn btn-primary my-3">
+              <p><%= event.name %></p>
+              <p><%= event.quantity %> cupos disponibles</p>
+            </div>
+          <% end %>
     <% end %>
+  </div>
 </div>
-<% end %>
