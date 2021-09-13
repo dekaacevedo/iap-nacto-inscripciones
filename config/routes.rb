@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   get 'success', to: 'success#index'
   get 'full', to: 'success#full', as: 'full'
+  get 'ready', to: 'success#ready', ad: 'ready'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

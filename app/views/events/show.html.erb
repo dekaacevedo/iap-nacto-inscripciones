@@ -27,7 +27,7 @@
             <td><%= attendant.email %></td>
             <td scope="row"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
             <% if attendant.declaration.present? %>
-              <td><%= link_to 'Ver declaración', event_declaration_path(attendant.declaration), class: "btn btn-success see-declaration" %></td>
+              <td><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration" %></td>
             <% else %>
               <td></td>
             <% end %>

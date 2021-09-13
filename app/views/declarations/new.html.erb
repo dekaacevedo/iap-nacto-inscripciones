@@ -1,10 +1,10 @@
 <div class="container">
-  <h2 class="text-center mt-2">Declaración</h2>
+  <h3 class="text-center mt-3">Declaración Jurada</h3>
 
   <div class="d-flex flex-column align-items-center">
     <%= simple_form_for [@event, @declaration] do |f| %>
       <div class=" form-inputs">
-        <%= f.input :rut, label: "Rut", hint: "debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
+        <%= f.input :rut, label: "Escribe tu Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
         <%= f.input :qa, as: :radio_buttons, label: "1. ¿Se ha realizado un examen de PCR para detectar COVID-19 en la última semana?" %>
 
         <%= f.input :qb, as: :radio_buttons, label: "2. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona con diagnóstico conocido de COVID-19 en los últimos 11 días? (Excluye personal de salud con uso de EPP en contexto de atención de paciente/excluye ser contacto de un contacto)" %>

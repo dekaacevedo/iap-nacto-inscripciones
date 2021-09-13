@@ -14,7 +14,7 @@ class DeclarationsController < ApplicationController
     @declaration.attendant = @attendant
 
       if @declaration.save
-        redirect_to success_path
+        redirect_to ready_path
       else
         flash[:alert] = "Algo no funcionó correctamente."
         render :new

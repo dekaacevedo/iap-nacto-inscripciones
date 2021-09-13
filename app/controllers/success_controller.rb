@@ -7,4 +7,8 @@ class SuccessController < ApplicationController
   def full
 
   end
+
+  def ready
+
+  end
 end
