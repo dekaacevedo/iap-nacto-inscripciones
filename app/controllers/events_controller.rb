@@ -15,7 +15,7 @@ class EventsController < ApplicationController
         page_size: 'Letter',
         template: "events/show.html.erb",
         layout: "pdf.html",
-        orientation: "Portrait",
+        orientation: "Landscape",
         lowquality: true,
         zoom: 1,
         dpi: 75
@@ -68,6 +68,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :quantity)
+    params.require(:event).permit(:name, :date, :quantity, :seats)
   end
 end

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_222649) do
     t.string "rut"
     t.string "phone"
     t.string "email"
+    t.string "seat"
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -76,9 +77,11 @@ ActiveRecord::Schema.define(version: 2021_09_12_222649) do
     t.string "name"
     t.date "date"
     t.integer "quantity"
+    t.string "seats", array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["seats"], name: "index_events_on_seats", using: :gin
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

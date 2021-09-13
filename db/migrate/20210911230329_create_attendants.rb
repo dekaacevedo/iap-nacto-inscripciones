@@ -6,6 +6,7 @@ class CreateAttendants < ActiveRecord::Migration[6.0]
       t.string :rut
       t.string :phone
       t.string :email
+      t.string :seat
       t.boolean :declaration
       t.references :event, null: false, foreign_key: true
 

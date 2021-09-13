@@ -16,6 +16,7 @@ class AttendantsController < ApplicationController
       @attendant.last_name = @attendant.last_name.titleize
       @attendant.rut = @attendant.rut.upcase
       @attendant.event = @event
+      @attendant.seat = @event.seats.shift
 
       if @attendant.save
         @event.quantity = @event.quantity - 1
@@ -41,7 +42,7 @@ class AttendantsController < ApplicationController
   private
 
   def attendant_params
-    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email)
+    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email, :seat)
   end
 
   def find_event
