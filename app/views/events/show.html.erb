@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <h3 class="text-center mt-3"><%= @event.name %></h3>
   <p class="text-center my-2"><%=pluralize @event.attendants.count, "asistente" %></p>
   <div class="table-responsive">
@@ -12,6 +12,7 @@
           <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
           <th></th>
         </tr>
@@ -28,6 +29,11 @@
             </td>
             <td class="text-center"><%= attendant.email %></td>
             <td class="text-center"><%= attendant.seat %></td>
+            <td class="text-center">
+              <%= link_to rails_blob_path(attendant.pase, diposition: "attachment") do %>
+                <i class="fas fa-file-pdf"></i>
+              <% end %>
+            </td>
             <% if attendant.declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration" %></td>
             <% else %>

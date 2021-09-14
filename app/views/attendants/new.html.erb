@@ -9,6 +9,7 @@
         <%= f.input :rut, label: "Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9", error: "Rut inválido"%>
         <%= f.input :phone, label: "Teléfono", error: "Teléfono inválido", hint: "Debes escribir 9 dígitos"%>
         <%= f.input :email, label: "Correo eléctronico (opcional)"%>
+        <%= f.input :pase, as: :file, label: "Sube tu pase de movilidad", error: "Debes adjuntar tu pase de movilidad" %>
       </div>
       <p>* Es necesario que lo completes</p>
       <div class="dropdown-divider"></div>

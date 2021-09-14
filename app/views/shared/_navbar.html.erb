@@ -13,10 +13,10 @@
       <% if action_name.to_sym == :show%>
         <%= link_to 'Volver', :back, class: "nav-link" %>
         <% if controller_name.to_sym == :events %>
-          <%= link_to 'Descarga el PDF', event_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-success", target: "_blank" %>
+          <%= link_to 'Descargar PDF', event_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-success", target: "_blank" %>
         <% end %>
         <% if controller_name.to_sym == :declarations %>
-          <%= link_to 'Descarga el PDF', event_declaration_path(::Declaration.find(params[:id]), format: :pdf), class: "btn btn-success", target: "_blank" %>
+          <%= link_to 'Descargar PDF', event_declaration_path(::Declaration.find(params[:id]), format: :pdf), class: "btn btn-success", target: "_blank" %>
         <% end %>
       <% else %>
         <% if user_signed_in? %>
