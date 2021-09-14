@@ -1,6 +1,6 @@
 class DeclarationsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_declaration, only: :show
+  before_action :set_declaration, only: [:show, :ready]
   before_action :find_attendant, only: :create
   before_action :find_event, only: [:new, :create]
 
@@ -14,7 +14,7 @@ class DeclarationsController < ApplicationController
     @declaration.attendant = @attendant
 
       if @declaration.save
-        redirect_to ready_path
+        redirect_to "/ready/#{@declaration.id}"
       else
         flash[:alert] = "Algo no funcionó correctamente."
         render :new
@@ -36,11 +36,19 @@ class DeclarationsController < ApplicationController
       end
     end
   end
+
+  def ready
+
+  end
   private
 
   def set_declaration
     @declaration = Declaration.find(params[:id])
     # authorize @declaration
+  end
+
+  def set_declaration_ready
+    @declaration = Declaration.find(declaration_params)
   end
 
   def declaration_params

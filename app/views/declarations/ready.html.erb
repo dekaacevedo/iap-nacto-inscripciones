@@ -1,6 +1,9 @@
 <div class="container mt-3">
-  <h3 class="text-center pb-2">Ya tenemos tu declaración.</h2>
+  <h3 class="text-center pb-2">Ya tenemos tu declaración</h2>
+  <h4 class=text-center><%= @declaration.attendant.first_name + " " + @declaration.attendant.last_name%> </h4>
   <p class="text-center">No olvides que debes presentarte a las 17.30 hrs en la iglesia</p>
+  <p class="text-center">Tu asiento es el:</p>
+  <p class="text-center"><%= @declaration.attendant.seat %></p>
   <p class="text-center pt-3">Debes tener a mano tu pase de movilidad porque será habilitado en la entrada.</p>
   <h3 class="text-center bold pt-3">Nos vemos hoy! 🥳</h3>
 </div>
