@@ -22,6 +22,19 @@ class DeclarationsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Declaración Jurada #{@declaration.event} - #{@declaration.attendant}",
+        page_size: 'Letter',
+        template: "declarations/show.html.erb",
+        layout: "pdf.html",
+        orientation: "Portrait",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
   end
   private
 

@@ -4,11 +4,11 @@
   <div class="d-flex flex-column align-items-center mt-2">
     <%= simple_form_for [@event, @attendant] do |f| %>
       <div class=" form-inputs">
-        <%= f.input :first_name, label: "Nombre" %>
-        <%= f.input :last_name, label: "Apellidos" %>
-        <%= f.input :rut, label: "Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
-        <%= f.input :phone, label: "Teléfono"%>
-        <%= f.input :email, label: "Correo eléctronico"%>
+        <%= f.input :first_name, label: "Nombre", error: "Nombre no puede quedar en blanco" %>
+        <%= f.input :last_name, label: "Apellidos", error: "Apellidos no puede quedar en blanco"  %>
+        <%= f.input :rut, label: "Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9", error: "Rut inválido"%>
+        <%= f.input :phone, label: "Teléfono", error: "Teléfono inválido", hint: "Debes escribir 9 dígitos"%>
+        <%= f.input :email, label: "Correo eléctronico (opcional)"%>
       </div>
       <p>* Es necesario que lo completes</p>
       <div class="dropdown-divider"></div>

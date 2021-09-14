@@ -42,7 +42,7 @@ class AttendantsController < ApplicationController
   private
 
   def attendant_params
-    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email, :seat)
+    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email, :seat, :pase)
   end
 
   def find_event

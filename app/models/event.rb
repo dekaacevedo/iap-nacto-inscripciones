@@ -3,7 +3,5 @@ class Event < ApplicationRecord
   has_many :attendants, dependent: :destroy
   has_many :declarations, dependent: :destroy
 
-  validates :name, presence: true
-  validates :date, presence: true
-  validates :quantity, presence: true
+  validates :name, :date, :quantity, :seats, presence: true
 end
