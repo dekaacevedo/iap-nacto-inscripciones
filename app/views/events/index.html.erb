@@ -1,5 +1,6 @@
 <div class="container">
   <h3 class="text-center mt-3">Selecciona el culto que deseas asistir</h2>
+  <p class="text-center">Las inscripciones están permitidas solo para aquellos que tengan su esquema de vacunación completo y su pase de movilidad habilitado</p>
   <div class="d-flex flex-column align-items-center">
     <% if @events.size > 0 %>
       <% @events.order(date: :asc).each do |event| %>
