@@ -1,6 +1,6 @@
 class AttendantsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_attendant, only: :destroy
+  before_action :set_attendant, only: [:destroy, :edit, :update]
   before_action :find_event, only: [:new, :create]
 
   def new
@@ -26,6 +26,20 @@ class AttendantsController < ApplicationController
         flash[:alert] = "Algo no funcionó correctamente."
         render :new
       end
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @attendant.update(attendant_params)
+      redirect_to event_path(@attendant.event)
+      flash[:notice] = "El asistente ha sido actualizado con éxito."
+    else
+      flash[:alert] = "Algo no funcionó correctamente."
+      render :edit
     end
   end
 

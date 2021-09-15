@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :declarations, only: %i[show new create]
   end
 
-  resources :attendants, only: :destroy
+  resources :attendants, only: %i[destroy edit update]
 
   get 'success', to: 'success#index'
   get 'full', to: 'success#full', as: 'full'

@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if action_name.to_sym == :show%>
-        <%= link_to 'Volver', :back, class: "nav-link" %>
+        <%= link_to 'Volver', request.referrer, class: "nav-link" %>
         <% if controller_name.to_sym == :events %>
           <%= link_to 'Descargar PDF', event_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-success", target: "_blank" %>
         <% end %>

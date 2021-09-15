@@ -30,16 +30,19 @@
             <td class="text-center"><%= attendant.email %></td>
             <td class="text-center"><%= attendant.seat %></td>
             <td class="text-center">
-              <%= link_to rails_blob_path(attendant.pase, diposition: "attachment") do %>
+              <%= link_to rails_blob_path(attendant.pase, diposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-pdf"></i>
               <% end %>
             </td>
             <% if attendant.declaration.present? %>
-              <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration" %></td>
+              <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
             <% else %>
               <td></td>
             <% end %>
             <td class="text-center">
+            <%= link_to edit_attendant_path(attendant) do %>
+              <i class="fas fa-pen danger"></i>
+            <% end %>
             <%= link_to attendant_path(attendant), method: :delete, data: { confirm: "Estás seguro?" } do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
