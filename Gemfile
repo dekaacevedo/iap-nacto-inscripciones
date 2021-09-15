@@ -40,6 +40,8 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-binary", group: :development
 gem "wkhtmltopdf-heroku", group: :production
 
+gem 'letter_opener', group: :development
+
 # gem aws s3
 gem "aws-sdk-s3", require: false
 
