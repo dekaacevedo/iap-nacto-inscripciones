@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @event.seats = event_params[:seats].upcase.split
+    @event.seats = ["A1"]
 
     if @event.save
       redirect_to root_path
