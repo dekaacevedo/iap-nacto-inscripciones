@@ -16,7 +16,7 @@ class AttendantsController < ApplicationController
       @attendant.last_name = @attendant.last_name.titleize
       @attendant.rut = @attendant.rut.upcase
       @attendant.event = @event
-      @attendant.seat = @event.seats.shift
+      @attendant.seat = @event.seats.pop
 
       if @attendant.save
         @event.quantity = @event.quantity - 1
