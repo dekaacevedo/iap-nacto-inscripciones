@@ -23,19 +23,6 @@
                   required: true,
                   input_html: { autocomplete: "first-name" },
                   label: "Nombre"  %>
-      <%= f.input :last_name,
-                  required: true,
-                  input_html: { autocomplete: "last-name" },
-                  label: "Apellidos"  %>
-      <%= f.input :rut,
-                  required: true,
-                  input_html: { autocomplete: "rut" },
-                  label: "RUT",
-                  hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9" %>
-      <%= f.input :phone,
-                  required: true,
-                  input_html: { autocomplete: "phone" },
-                  label: "Teléfono" %>
       <%= f.input :avatar, as: :file %>
 
     </div>
