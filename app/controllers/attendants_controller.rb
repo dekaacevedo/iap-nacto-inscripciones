@@ -16,11 +16,18 @@ class AttendantsController < ApplicationController
       @attendant.last_name = @attendant.last_name.titleize
       @attendant.rut = @attendant.rut.upcase
       @attendant.event = @event
-      @attendant.seat = @event.seats.pop
+      @attendant.seat = @event.seats.shift
 
       if @attendant.save
         @event.quantity = @event.quantity - 1
         @event.save
+        if @attendant.email?
+          mail = AttendantMailer.with(attendant: @attendant).info
+          mail.deliver_now
+        else
+          mail = AttendantMailer.with(attendant: @attendant).info_without_email
+          mail.deliver_now
+        end
         redirect_to success_path
       else
         flash[:alert] = "Algo no funcionó correctamente."
@@ -45,6 +52,9 @@ class AttendantsController < ApplicationController
 
   def destroy
     if @attendant.destroy
+      @event = @attendant.event
+      @event.quantity = @event.quantity + 1
+      @event.save
       redirect_to event_path(@attendant.event)
       flash[:notice] = "El asistente ha sido eliminado."
     else

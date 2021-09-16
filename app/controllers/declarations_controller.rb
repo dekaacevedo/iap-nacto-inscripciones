@@ -14,6 +14,10 @@ class DeclarationsController < ApplicationController
     @declaration.attendant = @attendant
 
       if @declaration.save
+        if @attendant.email?
+          mail = DeclarationMailer.with(declaration: @declaration).send_seat
+          mail.deliver_now
+        end
         redirect_to "/ready/#{@declaration.id}"
       else
         flash[:alert] = "Algo no funcionó correctamente."
