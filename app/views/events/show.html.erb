@@ -25,7 +25,7 @@
             <td class="text-center"><%= attendant.last_name %></td>
             <td class="text-center"><%= attendant.rut %></td>
             <td class="text-center">
-            <%= link_to attendant.phone, "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20has%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", target: "_blank"%>
+            <%= link_to attendant.phone, "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", target: "_blank"%>
             </td>
             <td class="text-center"><%= attendant.email %></td>
             <td class="text-center"><%= attendant.seat %></td>

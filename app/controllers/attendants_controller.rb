@@ -21,7 +21,8 @@ class AttendantsController < ApplicationController
       if @attendant.save
         @event.quantity = @event.quantity - 1
         @event.save
-        if @attendant.email?
+        regex = /\A[\w|.|-]+@[\w|-]+\.\w+\z/
+        if regex.match?(@attendant.email)
           mail = AttendantMailer.with(attendant: @attendant).info
           mail.deliver_now
         else
