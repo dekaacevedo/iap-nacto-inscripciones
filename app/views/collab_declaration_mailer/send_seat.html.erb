@@ -1,26 +1,11 @@
-<style>
-p {
-  margin: 0;
-}
-
-.pb {
-  padding-bottom: 5px;
-}
-</style>
-
-<p class="pb">
-  <%= @collaborator.first_name + " " + @collaborator.last_name %> hemos recibido tu Declaración Jurada para el culto <%= @event.name %>.
+<p><%= @collaborator.first_name + " " + @collaborator.last_name %> hemos recibido tu Declaración Jurada para el culto <%= @event.name %>.
 </p>
-<br>
-<h4>Tu asiento es el:</h4>
-<h3><%= @event_collaborator.collab_seat.seat %></h3>
-<br>
-<p>No olvides que debes presentarte a las 17.30 hrs en la Iglesia.</p>
-<p>Debes tener a mano tu pase de movilidad porque será habilitado en la entrada.</p>
+<h5 style="margin: 0;">Tu asiento es el:</h5>
+<h3 style="margin: 0 0 10px 0;"><%= @event_collaborator.collab_seat.seat %></h3>
+<p style="margin: 0;">No olvides que debes presentarte a las 17.15 hrs en la Iglesia.</p>
+<p style="margin: 0;">Debes tener a mano tu pase de movilidad porque será habilitado en la entrada.</p>
 <h3>Nos vemos hoy! 🥳</h3>
-<br>
-<p>Ante cualquier duda comunicate al:</p>
-<a href="tel:+56912345678" class="pb">+56 (9) 3178 7392</a>
-<br>
-<p>Atte.</p>
-<p>Min. de Comunicación - IAP Nacimiento</p>
+<p style="margin: 0;">Ante cualquier duda comunicate al:</p>
+<a href="tel:+56912345678" style="margin: 0;" >+56 (9) 3178 7392</a>
+<p style="margin: 10px 0 0 0;">Atte.</p>
+<p style="margin: 0;">Min. de Comunicación - IAP Nacimiento</p>
