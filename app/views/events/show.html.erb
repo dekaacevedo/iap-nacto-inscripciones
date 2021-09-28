@@ -99,7 +99,7 @@
             <%= link_to edit_event_collaborator_path(event_collaborator) do %>
               <i class="fas fa-pen danger"></i>
             <% end %>
-            <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" } do %>
+            <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" }, remote: true do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
                 </td>
