@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <h3 class="text-center mt-3">Colaboradores</h3>
+  <div class="d-flex justify-content-end">
+  <p><%= link_to 'Crear nuevo colaborador',  new_collaborator_path, class: "btn btn-info my-2" %></p>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="bg-info">
+        <tr>
+          <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Rut</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @collaborators.each do |collaborator| %>
+          <tr>
+            <td class="text-center"><%= collaborator.first_name %></td>
+            <td class="text-center"><%= collaborator.last_name %></td>
+            <td class="text-center"><%= collaborator.rut %></td>
+            <td class="text-center">
+            <%= link_to collaborator.phone, "https://wa.me/56#{collaborator.phone}?text=Hola%20#{collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", target: "_blank"%>
+            </td>
+            <td class="text-center"><%= collaborator.email %></td>
+            <td class="text-center">
+              <%= link_to rails_blob_path(collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+                <i class="fas fa-file-pdf"></i>
+              <% end %>
+            </td>
+            <td class="text-center">
+            <%= link_to edit_collaborator_path(collaborator) do %>
+              <i class="fas fa-pen danger"></i>
+            <% end %>
+            <%= link_to collaborator_path(collaborator), method: :delete, data: { confirm: "Estás seguro?" } do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+                </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  </div>
+</div>

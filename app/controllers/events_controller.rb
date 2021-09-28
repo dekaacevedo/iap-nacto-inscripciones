@@ -1,13 +1,16 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event2, only: [:attendants, :collaborators]
 
   def index
     @events = Event.all
   end
 
   def show
+    @event_collaborator = EventCollaborator.new
     @attendants = @event.attendants
+    @collaborators = @event.event_collaborators
     respond_to do |format|
       format.html
       format.pdf do
@@ -31,6 +34,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     @event.seats = ["A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6", "G1", "G2", "G3", "G4", "G5", "G6", "Z1", "Z2", "Z3"]
+    @event.collabs = 10
 
     if @event.save
       redirect_to root_path
@@ -61,11 +65,49 @@ class EventsController < ApplicationController
   def admin
     @events = Event.all
   end
+
+  def attendants
+    @attendants = @event.attendants
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Culto #{@event.name}",
+        page_size: 'Letter',
+        template: "events/attendants.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
+  end
+
+  def collaborators
+    @collaborators = @event.event_collaborators
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Culto #{@event.name}",
+        page_size: 'Letter',
+        template: "events/collaborators.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
+  end
   private
 
   def set_event
     @event = Event.find(params[:id])
     # authorize @event
+  end
+
+  def set_event2
+    @event = Event.find(params[:event_id])
   end
 
   def event_params

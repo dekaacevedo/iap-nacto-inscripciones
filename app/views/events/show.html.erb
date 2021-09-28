@@ -1,8 +1,11 @@
 <div class="container-fluid">
   <h3 class="text-center mt-3"><%= @event.name %></h3>
-  <p class="text-center my-2"><%=pluralize @event.attendants.count, "asistente" %></p>
+  <p class="text-center my-2"><%=pluralize @attendants.count, "asistente" %></p>
+  <div class="d-flex justify-content-end">
+    <%= link_to 'Descargar PDF', event_asistentes_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-primary", target: "_blank" %>
+  </div>
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped mb-5">
       <thead class="bg-primary">
         <tr>
           <th scope="col" class="bold text-center" style="color: #fff;">Inscrito el</th>
@@ -24,9 +27,7 @@
             <td class="text-center"><%= attendant.first_name %></td>
             <td class="text-center"><%= attendant.last_name %></td>
             <td class="text-center"><%= attendant.rut %></td>
-            <td class="text-center">
-            <%= link_to attendant.phone, "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", target: "_blank"%>
-            </td>
+            <td class="text-center"><%= attendant.phone %></td>
             <td class="text-center"><%= attendant.email %></td>
             <td class="text-center"><%= attendant.seat %></td>
             <td class="text-center">
@@ -37,7 +38,9 @@
             <% if attendant.declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
             <% else %>
-              <td></td>
+              <td class="text-center">
+                <%= link_to "Solicitar declaración", "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
+              </td>
             <% end %>
             <td class="text-center">
             <%= link_to edit_attendant_path(attendant) do %>
@@ -51,5 +54,61 @@
         <% end %>
       </tbody>
   </table>
+  </div>
+  <%# <%= link_to 'agregar colaborador', new_event_event_collaborator_path(@event) %>
+  <h4 class="text-center my-2 mt-5">Colaboradores</h4>
+  <p class="text-center"><%=pluralize @collaborators.count, "inscrito" %></p>
+  <div class="d-flex justify-content-end">
+    <%= link_to 'Descargar PDF', event_colaboradores_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-info", target: "_blank" %>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="bg-info">
+        <tr>
+          <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
+          <th scope="col" class="bold text-center" style="color: #fff;"></th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @collaborators.each do |event_collaborator| %>
+          <tr>
+            <td class="text-center"><%= event_collaborator.collaborator.first_name %></td>
+            <td class="text-center"><%= event_collaborator.collaborator.last_name %></td>
+            <td class="text-center">
+            <%= link_to "Avisar participación como colaborador", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", class: "btn btn-info see-declaration", target: "_blank"%>
+            </td>
+            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
+            <td class="text-center">
+              <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+                <i class="fas fa-file-pdf"></i>
+              <% end %>
+            </td>
+            <% if event_collaborator.collab_declaration.present? %>
+              <td class="text-center"><%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
+            <% else %>
+              <td class="text-center">
+                <%= link_to "Solicitar declaración", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{@event.id}/collab_declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
+              </td>
+            <% end %>
+            <td class="text-center">
+            <%= link_to edit_event_collaborator_path(event_collaborator) do %>
+              <i class="fas fa-pen danger"></i>
+            <% end %>
+            <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" } do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+                </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  </div>
+  <div class="d-flex justify-content-center" id="somediv">
+  <%= render "event_collaborators/form" %>
   </div>
 </div>

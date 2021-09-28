@@ -10,6 +10,9 @@ class DeclarationMailer < ApplicationMailer
     @declaration = params[:declaration]
     @attendant = @declaration.attendant
     @event = @attendant.event
-    mail(to: @attendant.email, subject: "Nos vemos hoy! 🥳")
+    mail(
+      to: @attendant.email,
+      subject: "Nos vemos hoy! 🥳"
+    )
   end
 end

@@ -1,12 +1,8 @@
-<div class="container">
-  <h3 class="text-center mt-3">Escribe tus datos</h2>
-
-  <div class="d-flex flex-column align-items-center mt-2">
-    <%= simple_form_for [@event, @attendant] do |f| %>
+<%= simple_form_for @collaborator do |f| %>
       <div class=" form-inputs">
         <%= f.input :first_name, label: "Nombre", error: "Nombre no puede quedar en blanco" %>
         <%= f.input :last_name, label: "Apellidos", error: "Apellidos no puede quedar en blanco"  %>
-        <%= f.input :rut, hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9", placeholder: "11111111-1"%>
+        <%= f.input :rut, label: "Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9", error: "Rut inválido o ya está inscrito", placeholder: "Ej: 11111111-1"%>
         <%= f.input :phone, label: "Teléfono", error: "Teléfono inválido", hint: "Debes escribir 9 dígitos"%>
         <%= f.input :email, label: "Correo eléctronico (opcional)"%>
         <%= f.input :pase, as: :file, label: "Sube tu pase de movilidad", error: "Debes adjuntar tu pase de movilidad" %>
@@ -14,8 +10,6 @@
       <p>* Es necesario que lo completes</p>
       <div class="dropdown-divider"></div>
       <div class="text-center mb-5">
-        <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+        <%= f.button :submit, "Guardar", class: "btn btn-info" %>
       </div>
     <% end %>
-  </div>
-</div>

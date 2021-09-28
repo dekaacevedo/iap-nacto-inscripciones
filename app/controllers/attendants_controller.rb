@@ -55,6 +55,7 @@ class AttendantsController < ApplicationController
     if @attendant.destroy
       @event = @attendant.event
       @event.quantity = @event.quantity + 1
+      @event.seats.push(@attendant.seat)
       @event.save
       redirect_to event_path(@attendant.event)
       flash[:notice] = "El asistente ha sido eliminado."

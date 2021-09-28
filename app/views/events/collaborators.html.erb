@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <h3 class="text-center mt-3"><%= @event.name %></h3>
+  <p class="text-center my-2 mt-5"><%=pluralize @collaborators.count, "colaboradore" %></p>
+  <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col" class="bold text-center" style="color: #fff;">Inscrito el</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Rut</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+            <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @collaborators.each do |event_collaborator| %>
+            <tr>
+              <td scope="row" class="text-center"><%= event_collaborator.created_at.strftime('%d/%m/%Y') %></td>
+              <td class="text-center"><%= event_collaborator.collaborator.first_name %></td>
+              <td class="text-center"><%= event_collaborator.collaborator.last_name %></td>
+              <td class="text-center"><%= event_collaborator.collaborator.rut %></td>
+              <td class="text-center">
+              <%= link_to event_collaborator.collaborator.phone, "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{@event.id}/declarations/new", target: "_blank"%>
+              </td>
+              <td class="text-center"><%= event_collaborator.collaborator.email %></td>
+              <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
+              <td class="text-center">
+                <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+                  <i class="fas fa-file-pdf"></i>
+                <% end %>
+              </td>
+              <td></td>
+              <td class="text-center">
+              <%= link_to edit_event_collaborator_path(event_collaborator) do %>
+                <i class="fas fa-pen danger"></i>
+              <% end %>
+              <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" } do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+                  </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
