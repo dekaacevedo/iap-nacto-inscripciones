@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @collaborators.each do |collaborator| %>
+        <% @collaborators.order(:first_name).each do |collaborator| %>
           <tr>
             <td class="text-center"><%= collaborator.first_name %></td>
             <td class="text-center"><%= collaborator.last_name %></td>
