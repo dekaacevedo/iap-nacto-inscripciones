@@ -76,7 +76,7 @@
       </thead>
       <tbody>
         <% @collaborators.each do |event_collaborator| %>
-          <tr>
+          <tr id="collaborator-<%= event_collaborator.id %>">
             <td class="text-center"><%= event_collaborator.collaborator.first_name %></td>
             <td class="text-center"><%= event_collaborator.collaborator.last_name %></td>
             <td class="text-center">

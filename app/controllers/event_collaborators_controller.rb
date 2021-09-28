@@ -15,7 +15,7 @@ class EventCollaboratorsController < ApplicationController
           @event.collabs = @event.collabs - 1
         end
         @event.save
-        redirect_to @event
+        redirect_to event_path(@event, anchor: "collaborator-#{@event_collaborator.id}")
       else
         flash[:alert] = "Algo no funcionó correctamente."
       end
