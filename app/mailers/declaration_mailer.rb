@@ -15,4 +15,14 @@ class DeclarationMailer < ApplicationMailer
       subject: "Nos vemos hoy! 🥳"
     )
   end
+
+   def fail
+    @declaration = params[:declaration]
+    @attendant = @declaration.attendant
+    @event = @attendant.event
+    mail(
+      to: @attendant.email,
+      subject: "Algo no anda bien 😢"
+    )
+  end
 end

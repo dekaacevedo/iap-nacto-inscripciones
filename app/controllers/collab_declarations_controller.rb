@@ -16,8 +16,13 @@ class CollabDeclarationsController < ApplicationController
 
       if @collab_declaration.save
         if @collaborator.email?
-          mail = CollabDeclarationMailer.with(collab_declaration: @collab_declaration).send_seat
-          mail.deliver_now
+          if @collab_declaration.qb || @collab_declaration.qc || @collab_declaration.qd1 || @collab_declaration.qd2 || @collab_declaration.qd3 || @collab_declaration.qe1 || @collab_declaration.qe2 || @collab_declaration.qe3 || @collab_declaration.qe4 || @collab_declaration.qe5 || @collab_declaration.qe6 || @collab_declaration.qe7 || @collab_declaration.qe8
+            mail = CollabDeclarationMailer.with(collab_declaration: @collab_declaration).fail
+            mail.deliver_now
+          else
+            mail = CollabDeclarationMailer.with(collab_declaration: @collab_declaration).send_seat
+            mail.deliver_now
+          end
         end
         redirect_to "/collab_ready/#{@collab_declaration.id}"
       else

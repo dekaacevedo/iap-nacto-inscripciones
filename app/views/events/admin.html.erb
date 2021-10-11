@@ -1,7 +1,7 @@
 <div class="container">
   <h3 class="text-center mt-3">Asistentes por culto</h3>
   <div class="d-flex flex-column align-items-center">
-    <% @events.each do |event| %>
+    <% @events.order(date: :desc).each do |event| %>
           <%= link_to event_path(event) do %>
             <div class="d-flex flex-column align-items-center btn btn-primary my-3">
               <p><%= event.name %></p>

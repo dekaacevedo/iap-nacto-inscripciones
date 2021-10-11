@@ -15,8 +15,13 @@ class DeclarationsController < ApplicationController
 
       if @declaration.save
         if @attendant.email?
-          mail = DeclarationMailer.with(declaration: @declaration).send_seat
-          mail.deliver_now
+          if @collab_declaration.qb || @collab_declaration.qc || @collab_declaration.qd1 || @collab_declaration.qd2 || @collab_declaration.qd3 || @collab_declaration.qe1 || @collab_declaration.qe2 || @collab_declaration.qe3 || @collab_declaration.qe4 || @collab_declaration.qe5 || @collab_declaration.qe6 || @collab_declaration.qe7 || @collab_declaration.qe8
+            mail = DeclarationMailer.with(declaration: @declaration).fail
+            mail.deliver_now
+          else
+            mail = DeclarationMailer.with(declaration: @declaration).send_seat
+            mail.deliver_now
+          end
         end
         redirect_to "/ready/#{@declaration.id}"
       else
