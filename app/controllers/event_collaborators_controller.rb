@@ -38,7 +38,7 @@ class EventCollaboratorsController < ApplicationController
   def destroy
     if @event_collaborator.destroy
       @event = @event_collaborator.event
-      if @event.event_collaborators.size >= 10
+      if @event.event_collaborators.size >= 13
         @event.quantity = @event.quantity + 1
       else
         @event.collabs = @event.collabs + 1

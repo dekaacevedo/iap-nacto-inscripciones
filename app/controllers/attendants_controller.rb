@@ -12,7 +12,7 @@ class AttendantsController < ApplicationController
       redirect_to full_path
     else
       @attendant = Attendant.new(attendant_params)
-      @attendant.first_name = @attendant.first_name.capitalize
+      @attendant.first_name = @attendant.first_name.titleize
       @attendant.last_name = @attendant.last_name.titleize
       @attendant.rut = @attendant.rut.upcase
       @attendant.event = @event
