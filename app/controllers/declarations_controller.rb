@@ -2,7 +2,7 @@ class DeclarationsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_declaration, only: [:show, :ready]
   before_action :find_attendant, only: :create
-  before_action :find_event, only: [:new, :create]
+  before_action :find_event, only: :new
 
   def new
     @declaration = Declaration.new
@@ -66,7 +66,8 @@ class DeclarationsController < ApplicationController
 
   def find_attendant
     rut = params[:declaration][:rut]
-    @attendant = Attendant.find_by(rut: rut.upcase)
+    @event = Event.find(params[:event_id])
+    @attendant = @event.attendants.find_by(rut: rut)
   end
 
   def find_event
