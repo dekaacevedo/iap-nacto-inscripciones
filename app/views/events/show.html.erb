@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @attendants.each do |attendant| %>
+        <% @attendants.order(seat: :asc).each do |attendant| %>
           <tr>
             <td scope="row" class="text-center"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
             <td class="text-center"><%= attendant.first_name %></td>
