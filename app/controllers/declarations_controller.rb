@@ -15,7 +15,7 @@ class DeclarationsController < ApplicationController
 
       if @declaration.save
         if @attendant.email?
-          if @collab_declaration.qb || @collab_declaration.qc || @collab_declaration.qd1 || @collab_declaration.qd2 || @collab_declaration.qd3 || @collab_declaration.qe1 || @collab_declaration.qe2 || @collab_declaration.qe3 || @collab_declaration.qe4 || @collab_declaration.qe5 || @collab_declaration.qe6 || @collab_declaration.qe7 || @collab_declaration.qe8
+          if @declaration.qb || @declaration.qc || @declaration.qd1 || @declaration.qd2 || @declaration.qd3 || @declaration.qe1 || @declaration.qe2 || @declaration.qe3 || @declaration.qe4 || @declaration.qe5 || @declaration.qe6 || @declaration.qe7 || @declaration.qe8
             mail = DeclarationMailer.with(declaration: @declaration).fail
             mail.deliver_now
           else
