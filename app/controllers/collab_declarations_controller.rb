@@ -69,8 +69,9 @@ class CollabDeclarationsController < ApplicationController
 
   def find_event_collaborator
     rut = params[:collab_declaration][:rut]
+    @event = Event.find(params[:event_id])
     @collaborator = Collaborator.find_by(rut: rut.upcase)
-    @event_collaborator = EventCollaborator.find_by(collaborator_id: @collaborator.id)
+    @event_collaborator = @event.event_collaborators.find_by(collaborator_id: @collaborator.id)
   end
 
   def find_event
