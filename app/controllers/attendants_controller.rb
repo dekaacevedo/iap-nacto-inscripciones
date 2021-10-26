@@ -16,10 +16,10 @@ class AttendantsController < ApplicationController
       @attendant.last_name = @attendant.last_name.titleize
       @attendant.rut = @attendant.rut.upcase
       @attendant.event = @event
-      @attendant.seat = @event.seats.shift
 
       if @attendant.save
         @event.quantity = @event.quantity - 1
+        @event.seats.push(@attendant.seat)
         @event.save
         regex = /\A[\w|.|-]+@[\w|-]+\.\w+\z/
         if regex.match?(@attendant.email)
@@ -55,7 +55,7 @@ class AttendantsController < ApplicationController
     if @attendant.destroy
       @event = @attendant.event
       @event.quantity = @event.quantity + 1
-      @event.seats.push(@attendant.seat)
+      @event.seats.delete(@attendant.seat)
       @event.save
       redirect_to event_path(@attendant.event)
       flash[:notice] = "El asistente ha sido eliminado."

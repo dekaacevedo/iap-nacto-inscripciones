@@ -9,6 +9,10 @@
         <%= f.input :rut, hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9", placeholder: "11111111-1"%>
         <%= f.input :phone, label: "Teléfono", error: "Teléfono inválido", hint: "Debes escribir 9 dígitos"%>
         <%= f.input :email, label: "Correo eléctronico (opcional)"%>
+        <%= f.input :seat, collection: ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5"], disabled: @event.seats, label: "Seleccione su asiento" %>
+        <div class="d-flex flex-column align-items-center">
+          <%= image_tag "asientos.png", class: "asientos mb-2" %>
+        </div>
         <%= f.input :pase, as: :file, label: "Sube tu pase de movilidad", error: "Debes adjuntar tu pase de movilidad" %>
       </div>
       <p>* Es necesario que lo completes</p>
