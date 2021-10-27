@@ -8,14 +8,14 @@
     <table class="table table-striped mb-5">
       <thead class="bg-primary">
         <tr>
-          <th scope="col" class="bold text-center" style="color: #fff;">Inscrito el</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Rut</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">PDM</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Tº</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
           <th></th>
         </tr>
@@ -23,7 +23,6 @@
       <tbody>
         <% @attendants.order(seat: :asc).each do |attendant| %>
           <tr>
-            <td scope="row" class="text-center"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
             <td class="text-center"><%= attendant.first_name %></td>
             <td class="text-center"><%= attendant.last_name %></td>
             <td class="text-center"><%= attendant.rut %></td>
@@ -34,6 +33,7 @@
               <%= link_to rails_blob_path(attendant.pase, diposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-pdf"></i>
               <% end %>
+            <td class="text-center"><%= attendant.seat %></td>
             </td>
             <% if attendant.declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
@@ -69,7 +69,7 @@
           <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
           <th scope="col" class="bold text-center" style="color: #fff;"></th>
           <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">PDM</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
           <th></th>
         </tr>
