@@ -8,23 +8,22 @@
     <table class="table table-striped mb-5">
       <thead class="bg-primary">
         <tr>
-          <th scope="col" class="bold text-center" style="color: #fff;">Inscrito el</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Rut</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Nombre</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Apellidos</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Rut</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Teléfono</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Correo electrónico</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Asiento</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">PDM</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Tº</th>
+          <th scope="col" class="bold text-center" style="color: #fff; font-size: 0.8rem;">Declaración</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <% @attendants.order(seat: :asc).each do |attendant| %>
           <tr>
-            <td scope="row" class="text-center"><%= attendant.created_at.strftime('%d/%m/%Y') %></td>
-            <td class="text-center"><%= attendant.first_name %></td>
+            <td class="text-center size"><%= attendant.first_name %></td>
             <td class="text-center"><%= attendant.last_name %></td>
             <td class="text-center"><%= attendant.rut %></td>
             <td class="text-center"><%= attendant.phone %></td>
@@ -34,6 +33,12 @@
               <%= link_to rails_blob_path(attendant.pase, diposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-pdf"></i>
               <% end %>
+            </td>
+            <td class="text-center">
+                <%= link_to extra_path(attendant), remote: true do %>
+                  <i class="fas fa-thermometer-three-quarters"></i>
+                  <%= attendant.temperature %>
+                <% end %>
             </td>
             <% if attendant.declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
@@ -51,11 +56,46 @@
             <% end %>
                 </td>
           </tr>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                  <%= attendant.first_name + " " + attendant.last_name %>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <%= simple_form_for attendant do |f| %>
+                        <div class=" form-inputs">
+                          <%= f.input :temperature, label: "Ingresa la temperatura" %>
+                        </div>
+                        <div class="text-center mb-5">
+                          <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+                        </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
         <% end %>
       </tbody>
   </table>
   </div>
+
+
+
   <%# <%= link_to 'agregar colaborador', new_event_event_collaborator_path(@event) %>
+
+
+
   <h4 class="text-center my-2 mt-5">Colaboradores</h4>
   <p class="text-center"><%=pluralize @collaborators.count, "inscrito" %></p>
   <div class="d-flex justify-content-end">
@@ -69,7 +109,8 @@
           <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
           <th scope="col" class="bold text-center" style="color: #fff;"></th>
           <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">PDM</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Tº</th>
           <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
           <th></th>
         </tr>
@@ -88,6 +129,7 @@
                 <i class="fas fa-file-pdf"></i>
               <% end %>
             </td>
+            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
             <% if event_collaborator.collab_declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
             <% else %>
@@ -112,3 +154,4 @@
   <%= render "event_collaborators/form" %>
   </div>
 </div>
+
