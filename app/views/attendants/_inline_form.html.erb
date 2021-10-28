@@ -1,26 +1,26 @@
 <%= form_with model: attendant, class: 'divTableRow', id: dom_id(attendant, 'inline_form') do |f| %>
   <div class="divTableCell">
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "input-form-text" %>
   </div>
 
   <div class="divTableCell">
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "input-form-text" %>
   </div>
 
   <div class="divTableCell">
-    <%= f.text_field :rut %>
+    <%= f.text_field :rut, class: "input-form-text" %>
   </div>
 
   <div class="divTableCell">
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, class: "input-form-text" %>
   </div>
 
   <div class="divTableCell">
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: "input-form-text" %>
   </div>
 
   <div class="divTableCell">
-    <%= f.select :seat, [["A1"], ["A2"], ["A3"], ["A4"], ["A5"], ["A6"], ["A7"], ["B1"], ["B2"], ["B3"], ["B4"], ["B5"], ["B6"], ["B7"], ["C1"], ["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["C7"], ["D1"], ["D2"], ["D3"], ["D4"], ["D5"], ["D6"], ["E1"], ["E2"], ["E3"], ["E4"], ["E5"]], selected: attendant.seat, disabled: attendant.event.seats %>
+    <%= f.select :seat, [["A1"], ["A2"], ["A3"], ["A4"], ["A5"], ["A6"], ["A7"], ["B1"], ["B2"], ["B3"], ["B4"], ["B5"], ["B6"], ["B7"], ["C1"], ["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["C7"], ["D1"], ["D2"], ["D3"], ["D4"], ["D5"], ["D6"], ["E1"], ["E2"], ["E3"], ["E4"], ["E5"]], class: "input-form-text", selected: attendant.seat, disabled: attendant.event.seats %>
   </div>
 
   <div class="divTableCell">
@@ -30,9 +30,17 @@
   </div>
 
 
-  <div class="divTableCell"><%= attendant.seat %></div>
+  <div class="divTableCell ancho">
+    <%= f.text_field :temperature, class: "input-form-text" %>
+  </div>
 
   <div class="divTableCell">
     <%= f.submit "Actualizar", class: "btn btn-sm btn-primary"%>
   </div>
+
+  <div class="divTableCell">
+    <%= %>
+  </div>
+
+
 <% end %>
