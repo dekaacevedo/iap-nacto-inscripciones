@@ -35,7 +35,13 @@
                 <i class="fas fa-file-pdf"></i>
               <% end %>
             </div>
-            <div class="divTableCell"><%= attendant.seat %></div>
+            <div class="divTableCell">
+                <%= link_to extra_path(attendant), remote: true do %>
+                  <i class="fas fa-thermometer-three-quarters"></i>
+                  <%= attendant.temperature %>
+                <% end %>
+            </div>
+
             <% if attendant.declaration.present? %>
               <div class="divTableCell">
                 <%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %>
@@ -46,9 +52,31 @@
               </div>
             <% end %>
 
-
-
-
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                  <%= attendant.first_name + " " + attendant.last_name %>
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <%= simple_form_for attendant do |f| %>
+                        <div class=" form-inputs">
+                          <%= f.input :temperature, label: "Ingresa la temperatura" %>
+                        </div>
+                        <div class="text-center mb-5">
+                          <%= f.button :submit, "Guardar", class: "btn btn-primary" %>
+                        </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        
             <div class="divTableCell">
               <%= link_to edit_attendant_path(attendant), remote: true do %>
                 <i class="fas fa-pen danger"></i>
@@ -64,6 +92,9 @@
   </div>
 
   <%# <%= link_to 'agregar colaborador', new_event_event_collaborator_path(@event) %>
+
+
+
   <h4 class="text-center my-2 mt-5">Colaboradores</h4>
   <p class="text-center"><%=pluralize @collaborators.count, "inscrito" %></p>
   <div class="d-flex justify-content-end">
@@ -82,6 +113,8 @@
           <th scope="col" class="bold text-center" style="color: #fff;"></th>
           <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
           <th scope="col" class="bold text-center" style="color: #fff;">PDM</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Tº</th>
+
           <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
           <th></th>
         </tr>
@@ -100,6 +133,7 @@
                 <i class="fas fa-file-pdf"></i>
               <% end %>
             </td>
+            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
             <% if event_collaborator.collab_declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
             <% else %>
@@ -127,3 +161,4 @@
 
 
 </div>
+

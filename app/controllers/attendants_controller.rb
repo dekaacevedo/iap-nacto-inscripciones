@@ -3,6 +3,12 @@ class AttendantsController < ApplicationController
   before_action :set_attendant, only: [:destroy, :edit, :update]
   before_action :find_event, only: [:new, :create]
 
+
+
+  def extra
+    respond_to :html, :js
+  end
+
   def new
     @attendant = Attendant.new
   end
@@ -72,7 +78,7 @@ class AttendantsController < ApplicationController
   private
 
   def attendant_params
-    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email, :seat, :pase)
+    params.require(:attendant).permit(:first_name, :last_name, :rut, :phone, :email, :seat, :pase, :temperature)
   end
 
   def find_event
