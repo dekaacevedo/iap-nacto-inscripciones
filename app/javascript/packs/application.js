@@ -27,8 +27,11 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { TableCellEditing } from '../components/TableCellEditing'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  // const editing = new TableCellEditing(document.querySelector('table'));
+  // editing.init();
 });

@@ -1,0 +1,38 @@
+table{
+  >tbody{
+    >tr{
+      >td{
+        outline: 0;
+        position: relative;
+
+        .button-toolbar{
+          display: none;
+          border-top: none;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          // margin-left: -80px;
+          left: -2px;
+          width: calc(100% + 4px);
+          z-index: 2;
+          text-align: center;
+          .button-wrapper{
+            padding: 8px;
+            background-color: #FFF;
+            border: 1px solid rgb(182, 182, 182);
+            border-top: none;
+          }
+        }
+        &.in-editing{
+          border: 1px solid rgb(182, 182, 182);
+          // border-bottom: none;
+          background-color: #FFF;
+          .button-toolbar{
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
