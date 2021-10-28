@@ -1,43 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-// External libraries
-@import "bootstrap/scss/bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-
-body {
-  font-family: "Roboto", "sans-serif";
-}
-
-.size {
-  font-size: 0.8rem !important;
-}
-
-.bold {
-  font-weight: 700;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-p {
-  margin: 0;
-  font-size: 0.6em;
-}
-
-.declaration-answer{
-  font-size: 1em;
-}
-
-.pdf-flex {
-  display: flex;
-  flex-direction: row;
-}
-
-
-// SCSS tables
-
 div.paleBlueRows {
   // border: 1px solid #FFFFFF;
   width: 100%;
@@ -80,4 +40,3 @@ div.paleBlueRows {
 .divTableHeading { display: table-header-group;}
 .divTableFoot { display: table-footer-group;}
 .divTableBody { display: table-row-group;}
-
