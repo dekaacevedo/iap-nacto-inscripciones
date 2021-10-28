@@ -1,0 +1,3 @@
+console.log('Ingresó')
+document.getElementById('<%= dom_id(@attendant) %>').insertAdjacentHTML('afterend', "<%= j render 'inline_form', attendant: @attendant  %>")
+document.getElementById('<%= dom_id(@attendant) %>').style.display = 'none'

@@ -42,7 +42,11 @@ class AttendantsController < ApplicationController
   end
 
   def update
+    old_seat = @attendant.seat
     if @attendant.update(attendant_params)
+      @attendant.event.seats.delete(old_seat)
+      @attendant.event.seats.push(@attendant.seat)
+      @attendant.event.save
       redirect_to event_path(@attendant.event)
       flash[:notice] = "El asistente ha sido actualizado con éxito."
     else

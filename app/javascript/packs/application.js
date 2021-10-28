@@ -32,6 +32,6 @@ import { TableCellEditing } from '../components/TableCellEditing'
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  const editing = new TableCellEditing(document.querySelector('table'));
-  editing.init();
+  // const editing = new TableCellEditing(document.querySelector('table'));
+  // editing.init();
 });
