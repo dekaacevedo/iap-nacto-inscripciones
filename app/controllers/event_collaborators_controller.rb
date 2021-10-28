@@ -6,9 +6,10 @@ class EventCollaboratorsController < ApplicationController
   end
 
   def create
-      @event_collaborator = @event.event_collaborators.new(event_collaborator_params)
-
+      @event_collaborator = EventCollaborator.new(event_collaborator_params)
+      @event_collaborator.event = @event
       if @event_collaborator.save
+        @event.collab_seat.push(@event_collaborator.seat)
         if @event.collabs == 0
           @event.quantity = @event.quantity - 1
         else
@@ -26,7 +27,11 @@ class EventCollaboratorsController < ApplicationController
   end
 
   def update
+    old_seat = @event_collaborator.seat
     if @event_collaborator.update(event_collaborator_params)
+      @event_collaborator.event.collab_seat.delete(old_seat)
+      @event_collaborator.event.collab_seat.push(@event_collaborator.seat)
+      @event_collaborator.event.save
       redirect_to event_path(@event_collaborator.event)
       flash[:notice] = "El colaborador ha sido actualizado con éxito."
     else
@@ -38,6 +43,7 @@ class EventCollaboratorsController < ApplicationController
   def destroy
     if @event_collaborator.destroy
       @event = @event_collaborator.event
+      @event.collab_seat.delete(@event_collaborator.seat)
       if @event.event_collaborators.size >= 13
         @event.quantity = @event.quantity + 1
       else
@@ -55,7 +61,7 @@ class EventCollaboratorsController < ApplicationController
   private
 
   def event_collaborator_params
-    params.require(:event_collaborator).permit(:seat, :collaborator_id, :collab_seat_id)
+    params.require(:event_collaborator).permit(:seat, :collaborator_id)
   end
 
   def find_event

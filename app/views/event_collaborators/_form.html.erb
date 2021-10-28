@@ -2,9 +2,33 @@
   <%= simple_form_for([@event, @event_collaborator], remote: true) do |f| %>
         <div class="d-flex">
           <%= f.association :collaborator, collection: Collaborator.order(:first_name), include_blank: false, label: "Colaborador" %>
-          <%= f.association :collab_seat,collection: CollabSeat.order(:seat), include_blank: false, label: "Asiento" %>
+          <%= f.input :seat, collection: ["Acceso", "Audio", "Director", "Ficha", "Fotografía", "Letras/Transmisión", "Musico/Cantante", "Musico/Cantante", "Musico/Cantante", "Oración/Despedida", "Predicador", "Temperatura", "Ubicaciones"], disabled: @event.collab_seat, label: "Asiento" %>
         <%= f.button :submit, "Agregar Colaborador", class:"btn btn-info align-self-center mt-3 ml-3"%>
         </div>
   <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -114,13 +114,13 @@
             <td class="text-center">
             <%= link_to "Avisar participación como colaborador", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", class: "btn btn-info see-declaration", target: "_blank"%>
             </td>
-            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
+            <td class="text-center"><%= event_collaborator.seat %></td>
             <td class="text-center">
               <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
                 <i class="fas fa-file-pdf"></i>
               <% end %>
             </td>
-            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
+            <td class="text-center"><%= event_collaborator.seat %></td>
             <% if event_collaborator.collab_declaration.present? %>
               <td class="text-center"><%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
             <% else %>
