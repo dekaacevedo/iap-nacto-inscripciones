@@ -32,6 +32,13 @@ class CollaboratorsController < ApplicationController
   end
 
   def update
+    if @collaborator.update(collaborator_params)
+      flash[:notice] = "El colaborador ha sido actualizado con éxito."
+      redirect_to collaborators_path
+    else
+      flash[:alert] = "Algo no funcionó correctamente."
+      render :edit
+    end
   end
 
   private
