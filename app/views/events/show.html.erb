@@ -5,147 +5,29 @@
     <%= link_to 'Descargar PDF', event_asistentes_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-primary mb-2", target: "_blank" %>
   </div>
 
+
   <div class="table-responsive">
     <div class="divTable paleBlueRows">
-      <div class="divTableHeading">
-        <div class="divTableRow">
-          <div class="divTableHead">Nombre</div>
-          <div class="divTableHead">Apellidos</div>
-          <div class="divTableHead">Rut</div>
-          <div class="divTableHead">Teléfono</div>
-          <div class="divTableHead">Email</div>
-          <div class="divTableHead">Asiento</div>
-          <div class="divTableHead">PDM</div>
-          <div class="divTableHead">Tº</div>
-          <div class="divTableHead">Declaración</div>
-          <div class="divTableHead"></div>
-        </div>
-      </div>
-      <div class="divTableBody">
-        <% @attendants.order(seat: :asc).each do |attendant| %>
-          <%= content_tag :div, class: 'divTableRow', id: dom_id(attendant) do %>
-            <div class="divTableCell"><%= attendant.first_name %></div>
-            <div class="divTableCell"><%= attendant.last_name %></div>
-            <div class="divTableCell"><%= attendant.rut %></div>
-            <div class="divTableCell"><%= attendant.phone %></div>
-            <div class="divTableCell"><%= attendant.email %></div>
-            <div class="divTableCell"><%= attendant.seat %></div>
-            <div class="divTableCell">
-              <%= link_to rails_blob_path(attendant.pase, diposition: "attachment"), target: "_blank" do %>
-                <i class="fas fa-file-pdf"></i>
-              <% end %>
-            </div>
-            <div class="divTableCell">
-                <%= link_to extra_path(attendant), remote: true do %>
-                  <i class="fas fa-thermometer-three-quarters"></i>
-                  <%= attendant.temperature %>
-                <% end %>
-            </div>
-
-            <% if attendant.declaration.present? %>
-              <div class="divTableCell">
-                <%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %>
-              </div>
-            <% else %>
-              <div class="divTableCell">
-                <%= link_to "Solicitar declaración", "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
-              </div>
-            <% end %>
-
-
-
-
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-
-              </div>
-            </div>
-         </div>
-
-
-            <div class="divTableCell">
-              <%= link_to edit_attendant_path(attendant), remote: true do %>
-                <i class="fas fa-pen danger"></i>
-              <% end %>
-              <%= link_to attendant_path(attendant), method: :delete, data: { confirm: "Estás seguro?" } do %>
-                <i class="fas fa-trash-alt"></i>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render "table_header" %>
+      <%= render "attendants" %>
     </div>
   </div>
-
-  <%# <%= link_to 'agregar colaborador', new_event_event_collaborator_path(@event) %>
-
-
 
   <h4 class="text-center my-2 mt-5">Colaboradores</h4>
   <p class="text-center"><%=pluralize @collaborators.count, "inscrito" %></p>
   <div class="d-flex justify-content-end">
-    <%= link_to 'Descargar PDF', event_colaboradores_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-info", target: "_blank" %>
+    <%= link_to 'Descargar PDF', event_colaboradores_path(::Event.find(params[:id]), format: :pdf), class: "btn btn-info mb-2", target: "_blank" %>
   </div>
-
-
-
 
   <div class="table-responsive">
-    <table class="table table-striped">
-      <thead class="bg-info">
-        <tr>
-          <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
-          <th scope="col" class="bold text-center" style="color: #fff;"></th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Asiento</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">PDM</th>
-          <th scope="col" class="bold text-center" style="color: #fff;">Tº</th>
-
-          <th scope="col" class="bold text-center" style="color: #fff;">Declaración</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @collaborators.each do |event_collaborator| %>
-          <tr id="collaborator-<%= event_collaborator.id %>">
-            <td class="text-center"><%= event_collaborator.collaborator.first_name %></td>
-            <td class="text-center"><%= event_collaborator.collaborator.last_name %></td>
-            <td class="text-center">
-            <%= link_to "Avisar participación como colaborador", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", class: "btn btn-info see-declaration", target: "_blank"%>
-            </td>
-            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
-            <td class="text-center">
-              <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
-                <i class="fas fa-file-pdf"></i>
-              <% end %>
-            </td>
-            <td class="text-center"><%= event_collaborator.collab_seat.seat %></td>
-            <% if event_collaborator.collab_declaration.present? %>
-              <td class="text-center"><%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %></td>
-            <% else %>
-              <td class="text-center">
-                <%= link_to "Solicitar declaración", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{@event.id}/collab_declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
-              </td>
-            <% end %>
-            <td class="text-center">
-            <%= link_to edit_event_collaborator_path(event_collaborator) do %>
-              <i class="fas fa-pen danger"></i>
-            <% end %>
-            <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" }, remote: true do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-                </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="divTable paleGreenRows mb-3">
+      <%= render "table_header2" %>
+      <%= render "event_collaborators" %>
+    </div>
   </div>
+
   <div class="d-flex justify-content-center" id="somediv">
-  <%= render "event_collaborators/form" %>
+    <%= render "event_collaborators/form" %>
   </div>
-
-
-
 </div>
 

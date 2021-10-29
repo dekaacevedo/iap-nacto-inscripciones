@@ -1,0 +1,31 @@
+<%= form_with model: event_collaborator, class: 'divTableRow', id: dom_id(event_collaborator, 'inline_form') do |f| %>
+  <div class="divTableCell"><%= event_collaborator.collaborator.first_name %></div>
+  <div class="divTableCell"><%= event_collaborator.collaborator.last_name %></div>
+  <div class="divTableCell">
+    <%= link_to "Avisar participación como colaborador", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", class: "btn btn-info see-declaration", target: "_blank"%>
+  </div>
+
+  <div class="divTableCell">
+    <%= f.select :seat, [["Acceso"], ["Audio"], ["Director"], ["Ficha"], ["Fotografía"], ["Letras/Transmisión"], ["Musico/Cantante 1"], ["Musico/Cantante 2"], ["Musico/Cantante 3"], ["Predicador"], ["Salida"], ["Temperatura"], ["Ubicaciones"]], selected: event_collaborator.seat, disabled: event_collaborator.event.collab_seat %>
+  </div>
+
+  <div class="divTableCell">
+    <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+      <i class="fas fa-file-pdf"></i>
+    <% end %>
+  </div>
+
+  <div class="divTableCell ancho">
+    <%= f.text_field :temperature, class: "input-form-text" %>
+  </div>
+
+  <div class="divTableCell">
+    <%= f.submit "Actualizar", class: "btn btn-sm btn-primary"%>
+  </div>
+
+  <div class="divTableCell">
+    <%= %>
+  </div>
+
+
+<% end %>

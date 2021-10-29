@@ -1,35 +1,40 @@
-div.paleBlueRows {
+div.paleBlueRows, div.paleGreenRows {
   // border: 1px solid #FFFFFF;
   width: 100%;
   text-align: center;
   border-collapse: collapse;
 }
-.divTable.paleBlueRows .divTableCell, .divTable.paleBlueRows .divTableHead {
+
+.divTable.paleBlueRows .divTableCell, .divTable.paleBlueRows .divTableHead, .divTable.paleGreenRows .divTableCell, .divTable.paleGreenRows .divTableHead {
   // border: 1px solid #FFFFFF;
-  padding: 3px 2px;
+  padding: 4px 2px;
 }
-.divTable.paleBlueRows .divTableBody .divTableCell {
+.divTable.paleBlueRows .divTableBody .divTableCell, .divTable.paleGreenRows .divTableBody .divTableCell  {
   font-size: 0.9em;
 }
-.divTable.paleBlueRows .divTableRow:nth-child(even) {
-  background: #D0E4F5;
+.divTable.paleBlueRows .divTableRow:nth-child(even), .divTable.paleGreenRows .divTableRow:nth-child(even) {
+  background: rgba(0, 0, 0, 0.05);
 }
 .divTable.paleBlueRows .divTableHeading {
   background: $blue;
-  border-bottom: 5px solid #FFFFFF;
 }
-.divTable.paleBlueRows .divTableHeading .divTableHead {
+
+.divTable.paleGreenRows .divTableHeading {
+  background: $light-green;
+}
+
+.divTable.paleBlueRows .divTableHeading .divTableHead, .divTable.paleGreenRows .divTableHeading .divTableHead{
   font-size: 0.8em;
   font-weight: bold;
   color: #FFFFFF;
   text-align: center;
   // border-left: 2px solid #FFFFFF;
 }
-.divTable.paleBlueRows .divTableHeading .divTableHead:first-child {
+.divTable.paleBlueRows .divTableHeading .divTableHead:first-child, .divTable.paleGreenRows .divTableHeading .divTableHead:first-child {
   border-left: none;
 }
 
-.paleBlueRows .tableFootStyle {
+.paleBlueRows .tableFootStyle, .paleGreenRows .tableFootStyle  {
   font-size: 14px;
 }
 /* DivTable.com */

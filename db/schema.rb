@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_172805) do
+ActiveRecord::Schema.define(version: 2021_10_29_001600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,12 +115,12 @@ ActiveRecord::Schema.define(version: 2021_10_27_172805) do
   end
 
   create_table "event_collaborators", force: :cascade do |t|
-    t.bigint "collab_seat_id", null: false
     t.bigint "event_id", null: false
     t.bigint "collaborator_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["collab_seat_id"], name: "index_event_collaborators_on_collab_seat_id"
+    t.string "seat"
+    t.string "temperature"
     t.index ["collaborator_id"], name: "index_event_collaborators_on_collaborator_id"
     t.index ["event_id"], name: "index_event_collaborators_on_event_id"
   end
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_172805) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "collabs"
+    t.string "collab_seat", array: true
     t.index ["seats"], name: "index_events_on_seats", using: :gin
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -161,7 +162,6 @@ ActiveRecord::Schema.define(version: 2021_10_27_172805) do
   add_foreign_key "collab_declarations", "events"
   add_foreign_key "declarations", "attendants"
   add_foreign_key "declarations", "events"
-  add_foreign_key "event_collaborators", "collab_seats"
   add_foreign_key "event_collaborators", "collaborators"
   add_foreign_key "event_collaborators", "events"
   add_foreign_key "events", "users"

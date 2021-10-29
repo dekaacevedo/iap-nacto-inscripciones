@@ -36,6 +36,7 @@ class EventsController < ApplicationController
     @event.seats = Array.new
     @event.collabs = 13
     @event.quantity = 32
+    @event.collab_seat = Array.new
 
     if @event.save
       redirect_to root_path

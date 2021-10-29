@@ -1,0 +1,52 @@
+<div class="divTableBody">
+  <% @attendants.order(seat: :asc).each do |attendant| %>
+    <%= content_tag :div, class: 'divTableRow', id: dom_id(attendant) do %>
+      <div class="divTableCell"><%= attendant.first_name %></div>
+      <div class="divTableCell"><%= attendant.last_name %></div>
+      <div class="divTableCell"><%= attendant.rut %></div>
+      <div class="divTableCell"><%= attendant.phone %></div>
+      <div class="divTableCell"><%= attendant.email %></div>
+      <div class="divTableCell"><%= attendant.seat %></div>
+      <div class="divTableCell">
+        <%= link_to rails_blob_path(attendant.pase, diposition: "attachment"), target: "_blank" do %>
+          <i class="fas fa-file-pdf"></i>
+        <% end %>
+      </div>
+      <div class="divTableCell">
+        <%= link_to extra_path(attendant), remote: true do %>
+          <i class="fas fa-thermometer-three-quarters"></i>
+          <%= attendant.temperature %>
+        <% end %>
+      </div>
+
+      <% if attendant.declaration.present? %>
+        <div class="divTableCell">
+          <%= link_to 'Ver declaración', event_declaration_path(attendant.event, attendant.declaration), class: "btn btn-success see-declaration", target: "_blank" %>
+        </div>
+      <% else %>
+        <div class="divTableCell">
+          <%= link_to "Solicitar declaración", "https://wa.me/56#{attendant.phone}?text=Hola%20#{attendant.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{attendant.event.id}/declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
+        </div>
+      <% end %>
+
+      <div class="divTableCell">
+        <%= link_to edit_attendant_path(attendant), remote: true do %>
+          <i class="fas fa-pen danger"></i>
+        <% end %>
+        <%= link_to attendant_path(attendant), method: :delete, data: { confirm: "Estás seguro?" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+  <% end %>
+</div>

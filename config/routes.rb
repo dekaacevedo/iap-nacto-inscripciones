@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :collaborators, only: %i[new create index destroy edit update]
 
   get 'extra/:id', to: 'attendants#extra', as: 'extra'
+  get 'collab_extra/:id', to: 'event_collaborators#extra', as: 'collab_extra'
   get 'success', to: 'success#index'
   get 'full', to: 'success#full', as: 'full'
   get 'ready/:id', to: 'declarations#ready'
