@@ -1,0 +1,56 @@
+<div class="divTableBody">
+  <% @collaborators.each do |event_collaborator| %>
+    <%= content_tag :div, class: 'divTableRow', id: dom_id(event_collaborator) do %>
+      <div class="divTableCell"><%= event_collaborator.collaborator.first_name %></div>
+      <div class="divTableCell"><%= event_collaborator.collaborator.last_name %></div>
+      <div class="divTableCell">
+        <%= link_to "Avisar participación como colaborador", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20no%20te%20olvides%20que%20esta%20semana%20tienes%20participación%20como%20colaborador%20en%20el%20culto.%20Nos%20vemos!", class: "btn btn-info see-declaration", target: "_blank"%>
+      </div>
+      <div class="divTableCell"><%= event_collaborator.seat %></div>
+      <div class="divTableCell">
+        <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+          <i class="fas fa-file-pdf"></i>
+        <% end %>
+      </div>
+
+      <div class="divTableCell">
+        <%= link_to collab_extra_path(event_collaborator), remote: true do %>
+          <i class="fas fa-thermometer-three-quarters"></i>
+          <%= event_collaborator.temperature %>
+        <% end %>
+      </div>
+
+      <% if event_collaborator.collab_declaration.present? %>
+        <div class="divTableCell">
+          <%= link_to 'Ver declaración', event_collab_declaration_path(event_collaborator.event, event_collaborator.collab_declaration), class: "btn btn-success see-declaration", target: "_blank" %>
+        </div>
+      <% else %>
+        <div class="divTableCell">
+          <%= link_to "Solicitar declaración", "https://wa.me/56#{event_collaborator.collaborator.phone}?text=Hola%20#{event_collaborator.collaborator.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{@event.id}/collab_declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
+        </div>
+      <% end %>
+
+
+      <div class="divTableCell">
+        <%= link_to edit_event_collaborator_path(event_collaborator), remote: true do %>
+          <i class="fas fa-pen danger"></i>
+        <% end %>
+        <%= link_to event_collaborator_path(event_collaborator), method: :delete, data: { confirm: "Estás seguro?" }, remote: true do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+
+
+      <div class="modal fade" id="collabModal" tabindex="-1" aria-labelledby="collabModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+  <% end %>
+</div>
+

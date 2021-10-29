@@ -1,6 +1,12 @@
 class EventCollaboratorsController < ApplicationController
   before_action :find_event, only: [:new, :create]
-  before_action :find_event_collaborator, only: [:edit, :update, :destroy]
+  before_action :find_event_collaborator, only: [:edit, :update, :destroy, :extra]
+
+  def extra
+    respond_to :html, :js
+  end
+
+
   def new
     @event_collaborator = EventCollaborator.new
   end
@@ -61,7 +67,7 @@ class EventCollaboratorsController < ApplicationController
   private
 
   def event_collaborator_params
-    params.require(:event_collaborator).permit(:seat, :collaborator_id)
+    params.require(:event_collaborator).permit(:seat, :collaborator_id, :temperature)
   end
 
   def find_event
