@@ -67,7 +67,7 @@ class DeclarationsController < ApplicationController
   def find_attendant
     rut = params[:declaration][:rut]
     @event = Event.find(params[:event_id])
-    @attendant = @event.attendants.find_by(rut: rut)
+    @attendant = @event.attendants.find_by(id: params[:declaration][:attendant_id])
   end
 
   def find_event
