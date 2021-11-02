@@ -4,7 +4,8 @@
   <div class="d-flex justify-content-center">
     <%= simple_form_for [@event, @collab_declaration] do |f| %>
       <div class=" form-inputs">
-        <%= f.input :rut, label: "Escribe tu Rut", hint: "Debes escribir el rut sin puntos y con guión. Ej: 12345678-9"%>
+        <%= f.association :event_collaborator, collection: EventCollaborator.where(event_id: @event.id), label: "Selecciona tu nombre" %>
+
         <%= f.input :qa, as: :radio_buttons,  collection: [['Si', true], ['No', false]], label: "1. ¿Se ha realizado un examen de PCR para detectar COVID-19 en la última semana?" %>
 
         <%= f.input :qb, as: :radio_buttons, collection: [['Si', true], ['No', false]], label: "2. ¿Ha estado en contacto estrecho (menos de un metro de distancia y sin mascarilla) con alguna persona con diagnóstico conocido de COVID-19 en los últimos 11 días? (Excluye personal de salud con uso de EPP en contexto de atención de paciente/excluye ser contacto de un contacto)" %>
