@@ -1,5 +1,5 @@
 <div class="divTableBody">
-  <% @attendants.order(seat: :asc).each do |attendant| %>
+  <% @attendants.order(first_name: :asc).each do |attendant| %>
     <%= content_tag :div, class: 'divTableRow', id: dom_id(attendant) do %>
       <div class="divTableCell"><%= attendant.first_name %></div>
       <div class="divTableCell"><%= attendant.last_name %></div>
