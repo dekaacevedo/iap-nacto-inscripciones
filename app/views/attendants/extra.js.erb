@@ -1,3 +1,6 @@
 console.log('Ingresó');
+$('#exampleModal').on('shown.bs.modal', function() {
+  $(this).find('[autofocus]').focus();
+});
 $('#exampleModal .modal-content').html('<%= j render "attendants/newmodal", attendant: @attendant %>')
 $('#exampleModal').modal('show');
