@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event_collaborator = EventCollaborator.new
     @attendants = @event.attendants
     @collaborators = @event.event_collaborators
+    @attendees = @event.event_attendees
     respond_to do |format|
       format.html
       format.pdf do

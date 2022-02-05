@@ -1,0 +1,55 @@
+<div class="divTableBody">
+  <% @attendees.each do |event_attendee| %>
+    <%= content_tag :div, class: 'divTableRow', id: dom_id(event_attendee) do %>
+      <div class="divTableCell"><%= event_attendee.attendee.first_name %></div>
+      <div class="divTableCell"><%= event_attendee.attendee.last_name %></div>
+      <div class="divTableCell"><%= event_attendee.seat %></div>
+      <div class="divTableCell">
+        <% if event_attendee.attendee.pase.attached? %>
+          <%= link_to rails_blob_path(event_attendee.attendee.pase, diposition: "attachment"), target: "_blank" do %>
+            <i class="fas fa-file-pdf"></i>
+          <% end %> 
+        <% end %>
+      </div>
+
+      <div class="divTableCell">
+        <%= link_to attendee_extra_path(event_attendee), remote: true do %>
+          <i class="fas fa-thermometer-three-quarters"></i>
+          <%= event_attendee.temperature %>
+        <% end %>
+      </div>
+
+      <% if event_attendee.attendee_declaration.present? %>
+        <div class="divTableCell">
+          <%= link_to 'Ver declaración', event_attendee_declaration_path(event_attendee.event, event_attendee.attendee_declaration), class: "btn btn-success see-declaration", target: "_blank" %>
+        </div>
+      <% else %>
+        <div class="divTableCell">
+          <%= link_to "Solicitar declaración", "https://wa.me/56#{event_attendee.attendee.phone}?text=Hola%20#{event_attendee.attendee.first_name},%20haz%20click%20en%20el%20siguiente%20link%20para%20que%20completes%20tu%20Declaración%20Jurada:%20https://iap-nacto.herokuapp.com/events/#{@event.id}/attendee_declarations/new", class: "btn btn-danger see-declaration", target: "_blank"%>
+        </div>
+      <% end %>
+
+
+      <div class="divTableCell">
+        <%= link_to edit_event_attendee_path(event_attendee), remote: true do %>
+          <i class="fas fa-pen danger"></i>
+        <% end %>
+        <%= link_to event_attendee_path(event_attendee), method: :delete, data: { confirm: "Estás seguro?" }, remote: true do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+
+
+      <div class="modal fade" id="attendeeModal" tabindex="0" aria-labelledby="attendeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+  <% end %>
+</div>
+

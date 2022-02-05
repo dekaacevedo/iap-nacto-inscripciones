@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_015743) do
+ActiveRecord::Schema.define(version: 2021_12_10_173136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,40 @@ ActiveRecord::Schema.define(version: 2021_10_30_015743) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "temperature"
     t.index ["event_id"], name: "index_attendants_on_event_id"
+  end
+
+  create_table "attendee_declarations", force: :cascade do |t|
+    t.string "rut"
+    t.string "qa"
+    t.string "qb"
+    t.string "qc"
+    t.string "qd1"
+    t.string "qd2"
+    t.string "qd3"
+    t.string "qe1"
+    t.string "qe2"
+    t.string "qe3"
+    t.string "qe4"
+    t.string "qe5"
+    t.string "qe6"
+    t.string "qe7"
+    t.string "qe8"
+    t.bigint "event_attendee_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_attendee_id"], name: "index_attendee_declarations_on_event_attendee_id"
+    t.index ["event_id"], name: "index_attendee_declarations_on_event_id"
+  end
+
+  create_table "attendees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "rut"
+    t.string "phone"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "collab_declarations", force: :cascade do |t|
@@ -114,6 +148,17 @@ ActiveRecord::Schema.define(version: 2021_10_30_015743) do
     t.index ["event_id"], name: "index_declarations_on_event_id"
   end
 
+  create_table "event_attendees", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "attendee_id", null: false
+    t.string "seat"
+    t.string "temperature"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attendee_id"], name: "index_event_attendees_on_attendee_id"
+    t.index ["event_id"], name: "index_event_attendees_on_event_id"
+  end
+
   create_table "event_collaborators", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "collaborator_id", null: false
@@ -159,10 +204,14 @@ ActiveRecord::Schema.define(version: 2021_10_30_015743) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attendants", "events"
+  add_foreign_key "attendee_declarations", "event_attendees"
+  add_foreign_key "attendee_declarations", "events"
   add_foreign_key "collab_declarations", "event_collaborators"
   add_foreign_key "collab_declarations", "events"
   add_foreign_key "declarations", "attendants"
   add_foreign_key "declarations", "events"
+  add_foreign_key "event_attendees", "attendees"
+  add_foreign_key "event_attendees", "events"
   add_foreign_key "event_collaborators", "collaborators"
   add_foreign_key "event_collaborators", "events"
   add_foreign_key "events", "users"

@@ -13,6 +13,13 @@
     </div>
   </div>
 
+    <div class="table-responsive mt-5">
+    <div class="divTable paleBlueRows">
+      <%= render "table_header3" %>
+      <%= render "event_attendees" %>
+    </div>
+  </div>
+
   <h4 class="text-center my-2 mt-5">Colaboradores</h4>
   <p class="text-center"><%=pluralize @collaborators.count, "inscrito" %></p>
   <div class="d-flex justify-content-end">

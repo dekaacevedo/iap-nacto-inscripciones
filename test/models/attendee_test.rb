@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CollabSeatTest < ActiveSupport::TestCase
+class AttendeeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

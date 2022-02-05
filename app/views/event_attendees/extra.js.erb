@@ -1,0 +1,6 @@
+console.log('Ingresó');
+$('#attendeeModal').on('shown.bs.modal', function() {
+  $(this).find('[autofocus]').focus();
+});
+$('#attendeeModal .modal-content').html('<%= j render "event_attendees/newmodal", event_attendee: @event_attendee %>')
+$('#attendeeModal').modal('show');

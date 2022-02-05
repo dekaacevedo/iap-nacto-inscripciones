@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <h4 class=text-center><%= @attendee.first_name + " " + @attendee.last_name%> </h4>
+  <h4 class="text-center pt-2">Tu asiento es el:</h4>
+  <h3 class="text-center bold"><%= @attendee_declaration.event_attendee.seat %></h3>
+  <p class="text-center pt-3">No olvides que debes presentarte a las 17.30 hrs en la Iglesia.</p>
+  <h3 class="text-center bold pt-3">Nos vemos pronto! 🥳</h3>
+  <p class="text-center pt-4">Ante cualquier duda comunicate al:</p>
+  <div class="d-flex justify-content-center">
+  <a href="tel:+56912345678" class="text-center">+56 (9) 3178 7392</a>
+  </div>
+</div>

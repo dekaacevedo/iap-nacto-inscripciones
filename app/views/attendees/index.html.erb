@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <h3 class="text-center mt-3">Asistentes</h3>
+  <div class="d-flex justify-content-end">
+  <p><%= link_to 'Crear nuevo asistente',  new_attendee_path, class: "btn btn-primary my-2" %></p>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="bg-primary">
+        <tr>
+          <th scope="col" class="bold text-center" style="color: #fff;">Nombre</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Apellidos</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Rut</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Teléfono</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Correo electrónico</th>
+          <th scope="col" class="bold text-center" style="color: #fff;">Pase de movilidad</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendees.order(:first_name).each do |attendee| %>
+          <tr>
+            <td class="text-center"><%= attendee.first_name %></td>
+            <td class="text-center"><%= attendee.last_name %></td>
+            <td class="text-center"><%= attendee.rut %></td>
+            <td class="text-center"><%= attendee.phone %></td>
+            <td class="text-center"><%= attendee.email %></td>
+            
+            
+            <td class="text-center">
+              <% if attendee.pase.attached? %>
+                <%= link_to rails_blob_path(attendee.pase, diposition: "attachment"), target: "_blank" do %>
+                  <i class="fas fa-file-pdf"></i>
+                <% end %>
+              <% end %>
+            </td>
+
+
+            <td class="text-center">
+            <%= link_to edit_attendee_path(attendee) do %>
+              <i class="fas fa-pen danger"></i>
+            <% end %>
+            <%= link_to attendee_path(attendee), method: :delete, data: { confirm: "Estás seguro?" } do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+                </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  </div>
+</div>

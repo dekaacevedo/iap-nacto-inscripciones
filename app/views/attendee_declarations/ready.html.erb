@@ -1,0 +1,5 @@
+<% if @attendee_declaration.qb || @attendee_declaration.qc || @attendee_declaration.qd1 || @attendee_declaration.qd2 || @attendee_declaration.qd3 || @attendee_declaration.qe1 || @attendee_declaration.qe2 || @attendee_declaration.qe3 || @attendee_declaration.qe4 || @attendee_declaration.qe5 || @attendee_declaration.qe6 || @attendee_declaration.qe7 || @attendee_declaration.qe8%>
+  <%= render "success" %>
+<% else %>
+  <%= render "fail" %>
+<% end %>

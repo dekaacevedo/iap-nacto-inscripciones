@@ -6,7 +6,7 @@
       <% @events.order(date: :asc).each do |event| %>
         <% if event.quantity > 0 %>
           <% if event.date >= Date.today %>
-            <%= link_to new_event_attendant_path(event) do %>
+            <%= link_to new_event_event_attendee_path(event) do %>
               <div class="d-flex flex-column align-items-center justify-content-center my-3 btn btn-primary">
                 <p><%= event.name %></p>
                 <p><%= event.quantity %> cupos disponibles</p>

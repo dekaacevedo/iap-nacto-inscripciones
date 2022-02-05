@@ -1,0 +1,28 @@
+<%= form_with model: event_attendee, class: 'divTableRow', id: dom_id(event_attendee, 'inline_form') do |f| %>
+  <div class="divTableCell"><%= event_attendee.attendee.first_name %></div>
+  <div class="divTableCell"><%= event_attendee.attendee.last_name %></div>
+
+  <div class="divTableCell">
+    <%= f.select :seat, [["A1"], ["A2"], ["A3"], ["A4"], ["A5"], ["A6"], ["A7"], ["B1"], ["B2"], ["B3"], ["B4"], ["B5"], ["B6"], ["B7"], ["C1"], ["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["C7"], ["D1"], ["D2"], ["D3"], ["D4"], ["D5"], ["D6"], ["E1"], ["E2"], ["E3"], ["E4"], ["E5"]], selected: event_attendee.seat, disabled: event_attendee.event.seats %>
+  </div>
+
+  <div class="divTableCell">
+    <%# <%= link_to rails_blob_path(event_collaborator.collaborator.pase, diposition: "attachment"), target: "_blank" do %>
+      <%# <i class="fas fa-file-pdf"></i> %>
+    <%# <% end %> 
+  </div>
+
+  <div class="divTableCell ancho">
+    <%= f.text_field :temperature, class: "input-form-text" %>
+  </div>
+
+  <div class="divTableCell">
+    <%= f.submit "Actualizar", class: "btn btn-sm btn-primary"%>
+  </div>
+
+  <div class="divTableCell">
+    <%= %>
+  </div>
+
+
+<% end %>

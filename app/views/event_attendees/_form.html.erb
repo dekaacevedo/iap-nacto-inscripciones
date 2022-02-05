@@ -1,0 +1,15 @@
+<%= simple_form_for [@event, @event_attendee] do |f| %>  
+  <div class="d-flex flex-column">
+    <%= f.association :attendee, collection: Attendee.order(:first_name), label: "Selecciona tu nombre", error: "Esta persona ya está inscrita en este culto" %>
+    <%= f.input :seat, collection: ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5"], disabled: @event.seats, label: "Seleccione su asiento" %>
+    <div class="d-flex flex-column align-items-center box-width">
+      <p>Imagen de referencia:</p>
+      <%= image_tag "asientos.png", class: "asientos mb-2" %>
+      <p class="mt-4 text-center text-small">Por tus inscripciones anteriores ya tenemos tu pase de movilidad.</p>
+      <p class="mt-1 text-center text-small">Si necesitas actualizarlo comunícate al:</p>
+      <p class="mb-4 text-center text-small bold">+56 9 3178 7392</p>
+    </div>
+    <%= f.button :submit, "Inscribirme al culto", class: "btn btn-primary align-self-center my-3" %>
+  </div>
+<% end %>
+  
